@@ -38,37 +38,28 @@ using vll = vector<long long>;
 using vvint = vector<vector<int>>;
 inline bool yneos(bool a,bool upp=true){if(a){cout<<(upp?"YES\n":"Yes\n");}else{cout<<(upp?"NO\n":"No\n");}return a;}
 // mt19937 rng((int)std::chrono::steady_clock::now().time_since_epoch().count());
-constexpr int N = 1e7 + 1; //remember constraints dumbass
+constexpr int N = 1e6 + 1; //remember constraints dumbass
 
 void solve () {
   r1(n);
-  int a[n], cnt[31] = {0};
+  int a[n]; rep(a, n);
+  int le = 0, lo = 0, e = 0;
   FOR(i, n) {
-    cin >> a[i];
-    FOR(j, 31) {
-      if (a[i] & (1 << j)) cnt[j]++;
-    } 
-  }
-  
-  ll res = 0;
-  FOR(i, n) {
-    ll curr = 0;
-    FOR(j, 31) {
-      if (a[i] & (1 << j)) {
-        curr += ll(n - cnt[j]) << j;
-      } else {
-        curr += ll(cnt[j]) << j;
-      }
-      res = max(res, curr);
+    if (a[i] & 1) {
+      lo = i + 1;
+    } else {
+      e++;
+      le = i + 1;
     }
   }
-  cout << res << el;
+  if (e == 1) cout << le << el;
+  else cout << lo << el;
 }
 
 int main () {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  int t; cin >> t;
-  while (t--)
+  // int t; cin >> t;
+  // while (t--)
     solve();
   return 0;
 }
