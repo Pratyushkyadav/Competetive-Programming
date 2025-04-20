@@ -42,8 +42,8 @@ using vpli = vector<pli>;
 using vll = vector<long long>;
 using vvint = vector<vector<int>>;
 using str = string;
-template<typename T, typename S> constexpr inline void cmin(T& a, S b) { a = a < b ? a : b;}
-template<typename T, typename S> constexpr inline void cmax(T& a, S b) { a = a > b ? a : b;}
+template<typename T, typename U> constexpr inline void cmin(T& a, U b) { a = a < b ? a : b;}
+template<typename T, typename U> constexpr inline void cmax(T& a, U b) { a = a > b ? a : b;}
 constexpr inline bool yneos(bool a, bool upp=true){if(a){cout<<(upp?"YES\n":"yes\n");}else{cout<<(upp?"NO\n":"no\n");}return a;}
 // mt19937 rng((int)std::chrono::steady_clock::now().time_since_epoch().count());
 constexpr int N = 1e5 + 1; //remember constraints dumbass
@@ -51,29 +51,15 @@ constexpr int lim = 31623;
 
 void solve () {
   r2(n, s);
-  int a[n], p[n + 1]; p[0] = 0;
-  FOR(i, n) {
-    cin >> a[i];
-    p[i + 1] = p[i] + a[i];
+  int a[n]; rep(a, n);
+  int res = -1, sum = 0, l = 0;
+  FOR(r, n) {
+    sum += a[r];
+    while (sum > s) sum -= a[l++];
+    if (sum == s) cmax(res, r - l + 1);
   }
-  if (p[n] < s) {
-    cout << -1 << el;
-    return;
-  }
-  int res = inf;
-  FOR(i, n) {
-    int l = i, r = n - 1, pos = -1;
-    while (l <= r) {
-      int m = l + r >> 1;
-      if (p[m + 1] - p[i] <= s) {
-        pos = m, l = m + 1;
-      } else r = m - 1;
-    }
-    if (pos != -1 && p[pos + 1] - p[i] == s) {
-      cmin(res, n - (pos - i + 1));
-    }
-  }
-  cout << res << el;
+  if (res == -1) cout << -1 << el;
+  else cout << n - res << el;
 }
 
 int main () {
