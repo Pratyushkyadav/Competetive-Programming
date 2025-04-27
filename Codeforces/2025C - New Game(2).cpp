@@ -94,7 +94,7 @@ void solve () {
   int res = 0, j = 0;
   FOR(i, n) {
     cmax(j, i);
-    while (j + 1 < n && a[i + 1] - a[i] <= 1 && a[j + 1] - a[i] < k) {
+    while (j + 1 < n && a[j + 1] - a[j] <= 1 && a[j + 1] - a[i] < k) {
       j++;
     }
     cmax(res, j - i + 1);
