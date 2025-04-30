@@ -93,16 +93,18 @@ constexpr int lim = 31623;
 
 void solve () {
   r1(n);
-  vint a(n); fr(a);
+  int a[n]; rep(a, n);
+  cmin(n, 22);
   FOR(i, n) {
-    int req = 0, d = i + 2;
-    while (d >= 2) {
-      if (a[i] % d-- == 0) {
-        req++;
-        if (req > i) {
-          yneos(0); return;
-        }
-      } else break;
+    bool nf = 1;
+    F0(j, i + 2, 2, -1) {
+      if (a[i] % j) {
+        nf = 0;
+        break;
+      }
+    }
+    if (nf) {
+      yneos(0); return;
     }
   }
   yneos(1);
