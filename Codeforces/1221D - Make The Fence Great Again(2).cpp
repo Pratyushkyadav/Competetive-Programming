@@ -103,9 +103,6 @@ void solve () {
   FOR(i, n) {
     cin >> a[i] >> b[i];
   }
-  FOR(i, n + 1) {
-    dp[0][i] = dp[1][i] = dp[2][i] = -1;
-  }
   FOR(x, 3) dp[x][0] = x * 1ll * b[0];
   FR(i, 1, n) {
     FOR(x, 3) {
