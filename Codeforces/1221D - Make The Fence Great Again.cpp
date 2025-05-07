@@ -96,21 +96,9 @@ constexpr int N = 1e5 + 1; //remember constraints dumbass
 constexpr int lim = 31623;
 //<------------- Solution --------------->
 
-int n;
 ll dp[3][3 * N];
-ll dfs(int *a, int *b, int i, int padd) {
-  if (i == n) return 0;
-  if (dp[padd][i] != -1) return dp[padd][i];
-  ll res = infl + 100;
-  FOR(x, 3) {
-    if (i == 0 || a[i - 1] + padd != a[i] + x) {
-      cmin(res, x * 1ll * b[i] + dfs(a, b, i + 1, x));
-    }
-  }
-  return dp[padd][i] = res;
-}
 void solve () {
-  cin >> n;
+  r1(n);
   int a[n], b[n];
   FOR(i, n) {
     cin >> a[i] >> b[i];
@@ -118,7 +106,18 @@ void solve () {
   FOR(i, n + 1) {
     dp[0][i] = dp[1][i] = dp[2][i] = -1;
   }
-  c1(dfs(a, b, 0, 0));
+  FOR(x, 3) dp[x][0] = x * 1ll * b[0];
+  FR(i, 1, n) {
+    FOR(x, 3) {
+      dp[x][i] = infl + 100;
+      FOR(padd, 3) {
+        if (a[i - 1] + padd != a[i] + x) {
+          cmin(dp[x][i], x * 1ll * b[i] + dp[padd][i - 1]);
+        }
+      }
+    }
+  }
+  c1(min({dp[0][n-1], dp[1][n-1], dp[2][n-1]}));
 }
 
 int main () {
