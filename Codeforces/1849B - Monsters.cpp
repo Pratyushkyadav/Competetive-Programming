@@ -102,21 +102,19 @@ constexpr int lim = 31623;
 //<------------- Solution --------------->
 void solve () {
   r2(n, k);
-  int a[n], l = 0; rep(a, n);
-  map<int, vi, greater<int>> mp;
-  vi res(n);
+  int a[n];
   FOR(i, n) {
-    int x = a[i] % k;
-    if (x) {
-      mp[x].pb(i + 1);
-    } else {
-      res[l++] = i + 1;
-    }
+    cin >> a[i];
+    a[i] %= k;
+    if (!a[i]) a[i] = k;
   }
-  for (auto& [_, v] : mp) {
-    for (int i : v) res[l++] = i;
-  }
-  cv(res);
+  int res[n];
+  iota(sall(res), 0);
+  stable_sort(sall(res), [&](int i, int j) {
+    return a[i] > a[j];
+  });
+  FOR(i, n) cout << res[i] + 1 << ' ';
+  cl;
 }
 
 int main () {
