@@ -115,9 +115,6 @@ int get(int n) {
 
 void solve() {
   r1(n);
-  if (n <= 0) {
-    c1(n * -1); return;
-  }
   int x = get(n);
   if (x * (x + 1) / 2 - 1 == n) {
     c1(x + 1);
