@@ -109,8 +109,8 @@ void solve() {
   vb res(n + 2);
   FR(i, 2, n + 2) {
     if (res[i]) continue;
+    mx = 2;
     FO(j, 2 * i, n + 2, i) {
-      mx = 2;
       res[j] = 1;
     }
   }
