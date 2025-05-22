@@ -118,20 +118,8 @@ ll sq(ll n) {
 
 void solve() {
   r3(s, i, e);
-  if (s <= i) {
-    int x = min(e, i - s + 1);
-    e -= x, s += x;
-    if (s <= i) {
-      c1(0); return;
-    }
-  }
-  int l = 0, r = e, res = 0;
-  while (l <= r) {
-    int m = l + r >> 1;
-    if (s + m > i + e - m) res = m, r = m - 1;
-    else l = m + 1;
-  }
-  c1(e - res + 1);
+  int m = max(0, i + e - s + 2 >> 1);
+  c1(max(0, e - m + 1));
 }
 
 int main () {
