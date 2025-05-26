@@ -109,27 +109,26 @@ constexpr int lim = 31623;
 //<------------- Solution --------------->
 void solve() {
   r2(m, s);
-  if (m * 9 < s || (s == 0 && m != 1)) {
+  if (s == 0 && m == 1) {
+    c2(0, 0); return;
+  }
+  if (m * 9 < s || !s) {
     c2(-1, -1); return;
   }
-  string mn(m, '0'), mx(m, '0');
+  auto check = [](int m, int s) {
+    return s >= 0 && s <= 9 * m;
+  };
+  string mx(m, '0'), mn(m, '0');
+  int s2 = s;
   FOR(i, m) {
-    int x = min(s, 9);
-    s -= x;
-    mn[i] += x, mx[i] += x;
-  }
-  sort(all(mn)), sort(rall(mx));
-  FOR(i, m) {
-    if (mn[i] != '0') {
-      swap(mn[0], mn[i]); break;
+    int x = min(s2, 9);
+    s2 -= x, mx[i] += x;
+    FOR(d, 10) {
+      if ((i > 0 || d > 0) && check(m - i - 1, s - d)) {
+        mn[i] += d;
+        s -= d; break;
+      }
     }
-  }
-  FOR(i, m - 1) {
-      int x;
-      if (i == 0) x = min('9' - mn[i + 1], mn[i] - '0' - 1);
-      else x = min('9' - mn[i + 1], mn[i] - '0');
-      mn[i] -= x;
-      mn[i + 1] += x;
   }
   c2(mn, mx);
 }
