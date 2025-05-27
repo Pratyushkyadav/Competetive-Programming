@@ -105,34 +105,21 @@ template<typename... Args> inline void pl(Args&&... args) { ((cout << args << ' 
 inline bool yneos(bool a, bool upp=true){if(a){cout<<(upp?"YES\n":"Yes\n");}else{cout<<(upp?"NO\n":"No\n");}return a;}
 inline void game(bool a) {if (a) cout << "Alice" << el; else cout << "Bob" << el;}
 // mt19937 rng((int)std::chrono::steady_clock::now().time_since_epoch().count());
-constexpr int N = 1.3 * (1e6 + 1); //remember constraints dumbass
+constexpr int N = 1e6 + 1; //remember constraints dumbass
 constexpr int lim = 31623;
 //<------------- Solution --------------->
-bitset<N + 1> np;
-vi p(1, 2);
-void sieve() {
-  np[0] = np[1] = 1;
-  for (int i = 4; i <= N; i += 2) np[i] = 1;
-  for (ll i = 3; i <= N; i += 2) {
-    if (np[i]) continue;
-    p.pb(i);
-    for (ll j = i * i; j <= N; j += i << 1) {
-      np[j] = 1;
-    }
-  }
-}
 
 void solve() {
   r1(n);
-  FOR(i, n) {
-    cout << p[i] << ' ';
+  int m = 3 * n + n - 1;
+  FR(i, 3 * n, m + 1) {
+    cout << i << ' ';
   }
 }
 
 int main () {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
   cout << fixed << setprecision(12);
-  sieve();
   // int t; cin >> t;
   // while (t--)
     solve();
