@@ -114,7 +114,7 @@ void solve() {
   FR(b, 1, x) {
     FR(c, 1, x) {
       if (b + c >= x || b * 1ll * c >= n) break; 
-      res += max(min(x - b - c *1ll, (n - b * 1ll * c) / (b + c)), 0ll);
+      res += min(x - b - c *1ll, (n - b * 1ll * c) / (b + c));
     }
   }
   c1(res);
