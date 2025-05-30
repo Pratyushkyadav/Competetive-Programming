@@ -109,21 +109,22 @@ inline void game(bool a) {if (a) cout << "Alice" << el; else cout << "Bob" << el
 constexpr int N = 1e5 + 1; //remember constraints dumbass
 constexpr int lim = 31623;
 //<------------- Solution --------------->
-int dp[2001][2001], n, k;
-int dfs(int i, int prev) {
-  if (i == 0) return 1;
-  if (dp[i][prev] != -1) return dp[i][prev];
-  int res = 0;
-  FO(cur, prev, n + 1, prev) {
-    if (cur % prev) continue;
-    res = (res + dfs(i - 1, cur)) % MOD;
-  }
-  return dp[i][prev] = res;
-}
+int dp[2001][2001];
 void solve() {
-  cin >> n >> k;
-  ms(dp, -1);
-  c1(dfs(k, 1));
+  r2(n, k);
+  FOR(i, n + 1) dp[0][i] = 1;
+
+  FR(i, 1, k + 1) {
+    FR(prev, 1, n + 1) {
+      int res = 0;
+      FO(cur, prev, n + 1, prev) {
+        if (cur % prev) continue;
+        res = (res + dp[i - 1][cur]) % MOD;
+      }
+      dp[i][prev] = res;
+    }
+  }
+  c1(dp[k][1]);
 }
 
 int main () {
