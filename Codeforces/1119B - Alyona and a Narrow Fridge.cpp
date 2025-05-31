@@ -110,16 +110,18 @@ constexpr int lim = 31623;
 //<------------- Solution --------------->
 void solve() {
   r2(n, h);
-  int a[n]; rep(a, n);
-  
+  vp a(n);
+  FOR(i, n) { cin >> a[i].F; a[i].S = i; }
+  sort(rall(a));
   auto check = [&](int m) {
-    int b[m];
-    FOR(i, m) b[i] = a[i];
-    sort(b, b + m, greater<int>());
-    int ch = 0;
-    FO(i, 0, m, 2) {
-      if (ch + b[i] <= h) ch += b[i];
-      else return false;
+    bool f = 1; int ch = 0;
+    FOR(i, n) {
+      if (a[i].S >= m) continue;
+      if (f) {
+        if (ch + a[i].F <= h) ch += a[i].F;
+        else return false;
+      }
+      f = !f;
     }
     return true;
   };
