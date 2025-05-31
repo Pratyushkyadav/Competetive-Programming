@@ -115,7 +115,7 @@ void solve() {
   auto check = [&](int m) {
     int b[m];
     FOR(i, m) b[i] = a[i];
-    sort(b, b + m, greater());
+    sort(b, b + m, greater<int>());
     int ch = 0;
     FO(i, 0, m, 2) {
       if (ch + b[i] <= h) ch += b[i];
