@@ -109,7 +109,7 @@ inline void game(bool a) {if (a) cout << "Flower" << el; else cout << "Gellyfish
 constexpr int N = 5e3 + 1; //remember constraints dumbass
 constexpr int lim = 31623;
 //<------------- Solution --------------->
-int dp[N], g[N][N], a[N];
+int dp[N][N], g[N][N], a[N];
 void getGcd() {
   for (int i = 0; i < N; i++) {
     g[i][0] = g[0][i] = i;
@@ -128,14 +128,14 @@ void solve() {
   if (cnt) {
     c1(n - cnt); return;
   }
-  FOR(i, mx + 1) dp[i] = 1e9;
-  dp[gc] = 0;
+  FOR(i, mx + 1) dp[0][i] = 1e9;
+  dp[0][gc] = 0;
   FR(i, 1, n + 1) {
-    FORR(j, mx) {
-      dp[j] = min(dp[j], 1 + dp[g[j][a[i - 1]]]);
+    FOR(j, mx + 1) {
+      dp[i][j] = min(dp[i - 1][j], 1 + dp[i - 1][g[j][a[i - 1]]]);
     }
   }
-  c1(dp[0] - 1 + (n - 1));
+  c1(dp[n][0] - 1 + (n - 1));
 }
 
 int main () {
