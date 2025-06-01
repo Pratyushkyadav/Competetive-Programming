@@ -122,7 +122,6 @@ void solve() {
   r1(n);
   vvi t(n);
   readg(t, n - 1);
-  a = 0, b = 0;
   dfs(t, 0, -1 , 0);
   c1(a * 1ll * b - (n - 1));
 }
