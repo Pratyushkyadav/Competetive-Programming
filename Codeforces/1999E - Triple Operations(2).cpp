@@ -109,7 +109,7 @@ inline void game(bool a) {if (a) cout << "Alice" << el; else cout << "Bob" << el
 constexpr int N = 2e5 + 1; //remember constraints dumbass
 constexpr int lim = 31623;
 //<------------- Solution --------------->
-ll dp[N];
+int dp[N];
 void get() {
   FR(i, 1, N) {
     int cur = i, cnt = 0;
@@ -119,7 +119,7 @@ void get() {
 }
 void solve() {
   r2(l, r);
-  ll res = dp[r] - dp[l - 1];
+  int res = dp[r] - dp[l - 1];
   while (l) res++, l /= 3;
   c1(res);
 }
