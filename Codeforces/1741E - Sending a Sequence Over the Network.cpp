@@ -112,7 +112,6 @@ inline void game(bool a) {if (a) cout << "Alice" << el; else cout << "Bob" << el
 constexpr int N = 2e5 + 1; //remember constraints dumbass
 constexpr int lim = 31623;
 //<------------- Solution --------------->
-int col[N], dp[N];
 void solve() {
   r1(n);
   int a[n]; rep(a, n);
