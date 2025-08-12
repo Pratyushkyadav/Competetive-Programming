@@ -111,7 +111,7 @@ inline void game(bool a) {if (a) cout << "Alice" << el; else cout << "Bob" << el
 // mt19937 rng((int)std::chrono::steady_clock::now().time_since_epoch().count());
 constexpr int N = 2e5 + 1; //remember constraints dumbass
 constexpr int lim = 31623;
-//<------------- Solution --------------->tiffin
+//<------------- Solution --------------->
 void solve() {
   r1(n);
   vi a(n, -1);
