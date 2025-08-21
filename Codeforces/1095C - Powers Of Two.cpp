@@ -119,7 +119,7 @@ void solve() {
   else {
     int a[32] = {0};
     FOR(i, 32) a[i] += (n & (1 << i)) > 0;
-    for (int i = 31; cnt != k && i >= 0; --i) {
+    for (int i = 31; cnt != k; --i) {
       while (a[i] && cnt != k) a[i]-- , a[i - 1] += 2, cnt++;
     }
     yneos(1);
