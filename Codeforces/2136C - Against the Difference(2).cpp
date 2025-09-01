@@ -112,9 +112,9 @@ inline void game(bool a) {if (a) cout << "Alice" << el; else cout << "Bob" << el
 constexpr int N = 2e5 + 1; //remember constraints dumbass
 constexpr int lim = 31623;
 //<------------- Solution --------------->tiffin
-int a[N];
 void solve() {
   r1(n);
+  int a[n];
   vvi pos(n + 1);
   FOR(i, n) {
     cin >> a[i];
