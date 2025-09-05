@@ -115,13 +115,9 @@ constexpr int lim = 31623;
 void solve() {
   r2(n, m);
   ll a[n], b[m]; rep(a, n); rep(b, m);
-  if (n == 1) {
-    FOR(i, m) cout << a[0] + b[i] << ' ';
-  } else {
-    ll g = abs(a[0] - a[1]);
-    FR(i, 1, n) g = gcd(g, abs(a[0] - a[i]));
-    FOR(i, m) cout << gcd(g, a[0] + b[i]) << ' ';
-  }
+  ll g = 0;
+  FR(i, 1, n) g = gcd(g, abs(a[0] - a[i]));
+  FOR(i, m) cout << gcd(g, a[0] + b[i]) << ' ';
 }
 
 int main() {
