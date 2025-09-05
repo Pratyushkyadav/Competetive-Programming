@@ -116,7 +116,7 @@ void solve() {
   l1(n);
   ll l = 1, res = n;
   FR(i, 1, n + 1) {
-    l = lcm(l, ll(i));
+    l = lcm(l, i);
     if (l > n) break;
     res = (res + n / l) % MOD;
   }
